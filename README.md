@@ -10,6 +10,7 @@ This repository contains sample code used in practical sessions as part of the m
 All code is provided "as is" with no guarantees or liability.
 
 * Practical1 - Getting Started with Android Studio
+* Practical2 - Working with Intents and Activities
 
 
 
