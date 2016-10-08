@@ -18,15 +18,15 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String new_note = (String) getIntent().getStringExtra("note");
-        if(new_note!=null) {
-            if(((NoteApplication) this.getApplication()).notes==null) {
-                ((NoteApplication) this.getApplication()).notes = new ArrayList<String>();
+        String new_note = (String) getIntent().getStringExtra("note"); //Get the contents of the note from the Intent. Note this might be null if the Intent wasn't started by CreateNote...
+        if(new_note!=null) { //So let's check. If this is null it probably means the app just started.
+            if(((NoteApplication) this.getApplication()).notes==null) { //if the global list of strings hasn't been used yet, it needs setting up
+                ((NoteApplication) this.getApplication()).notes = new ArrayList<String>(); //set it up.
             }
-            ((NoteApplication) this.getApplication()).notes.add(new_note);
+            ((NoteApplication) this.getApplication()).notes.add(new_note); //add our new note to the end of the array
 
             ListView lv = (ListView) findViewById(R.id.notesList);
-            lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ((NoteApplication) this.getApplication()).notes));
+            lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ((NoteApplication) this.getApplication()).notes)); //set the listview to draw items from our global list
         }
     }
 

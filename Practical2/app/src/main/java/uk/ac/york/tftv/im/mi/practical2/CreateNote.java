@@ -26,7 +26,7 @@ public class CreateNote extends Activity {
     public void buttonPressed(View view) {
         Intent i = new Intent(this,MainActivity.class);
         TextView note = (TextView) findViewById(R.id.editText);
-        i.putExtra("note",note.getText().toString());
+        i.putExtra("note",note.getText().toString()); //add the contents of the text input to the intent, under a payload called "note"
         startActivity(i);
     }
 
