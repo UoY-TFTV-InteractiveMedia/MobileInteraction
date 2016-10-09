@@ -14,19 +14,15 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
+    ArrayList<String> notes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String new_note = (String) getIntent().getStringExtra("note"); //Get the contents of the note from the Intent. Note this might be null if the Intent wasn't started by CreateNote...
-        if(new_note!=null) { //So let's check. If this is null it probably means the app just started.
-            if(((NoteApplication) this.getApplication()).notes==null) { //if the global list of strings hasn't been used yet, it needs setting up
-                ((NoteApplication) this.getApplication()).notes = new ArrayList<String>(); //set it up.
-            }
-            ((NoteApplication) this.getApplication()).notes.add(new_note); //add our new note to the end of the array
-
-            ListView lv = (ListView) findViewById(R.id.notesList);
-            lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ((NoteApplication) this.getApplication()).notes)); //set the listview to draw items from our global list
+        if(notes==null) { //if the application has just started, reset the list of notes.
+            notes = new ArrayList<String>();
+            ListView lv = (ListView) findViewById(R.id.notesList); //set the ListView to look at our ArrayList of notes.
+            lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, notes));
         }
     }
 
@@ -39,7 +35,16 @@ public class MainActivity extends Activity {
 
     public void buttonPressed(View view) {
         Intent i = new Intent(this,CreateNote.class);
-        startActivity(i);
+        startActivityForResult(i, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode==RESULT_OK) {
+            String new_note = data.getStringExtra("note");
+            notes.add(new_note); //add note to the list of notes
+            ((ArrayAdapter<String>)((ListView) findViewById(R.id.notesList)).getAdapter()).notifyDataSetChanged(); //tell the ListView to update contents.
+        }
     }
 
     @Override
