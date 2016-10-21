@@ -11,6 +11,6 @@ All code is provided "as is" with no guarantees or liability.
 
 * Practical1 - Getting Started with Android Studio
 * Practical2 - Working with Intents and Activities
-
+* Practical3 - Using Assets, Application Scope and System Intents
 
 
