@@ -3,19 +3,16 @@ package uk.ac.york.tftv.im.mi.practical4;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
+
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -54,34 +51,33 @@ public class CatFacts extends Activity {
     private class getData extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
-
             // params comes from the execute() call: params[0] is the url.
             try {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new StringBuilder();  //Stringbuilder is a helper class to build strings from sources like streams.
                 String line;
 
                 URL url = new URL(urls[0]);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection(); //open a HTTP connection to this URL
                 conn.connect();
 
-                BufferedReader bf = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                BufferedReader bf = new BufferedReader(new InputStreamReader(conn.getInputStream())); //HTTP is streaming data - we don't get it all at once, so have to keep getting it bit by bit. that is what the loop does below. A BufferedReader is used to access the stream
 
-                while ((line = bf.readLine()) != null)
+                while ((line = bf.readLine()) != null)//while the connection still has data arriving
                 {
-                    sb.append(line + "\n");
+                    sb.append(line + "\n"); //add the data to our growing stringbuilder
                 }
                 bf.close();
                 conn.getInputStream().close(); //close connection
 
-                return(sb.toString());
+                return(sb.toString());//return the entire contents of the file as a string
             } catch (Exception e) {
-                return e.getLocalizedMessage();
+                return e.getLocalizedMessage(); //if there is an exception (error), return the message in the error as a string
             }
         }
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            setFact(result);
+            setFact(result); //once the data has been collected, call setFact!
         }
     }
 
