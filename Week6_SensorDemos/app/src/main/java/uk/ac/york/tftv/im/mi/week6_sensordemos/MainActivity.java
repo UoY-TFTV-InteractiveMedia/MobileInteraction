@@ -7,10 +7,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -22,18 +18,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    public void buttonPressed(View v) {
-        ((Button)findViewById(R.id.button)).setEnabled(false);//disable button
-
         s_mgr = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         s = s_mgr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         s_mgr.registerListener(s_listener = new SensorEventListener() {
@@ -48,7 +32,7 @@ public class MainActivity extends Activity {
                 float y = event.values[1];
                 float z = event.values[2];
 
-                ((TextView) findViewById(R.id.dataView)).setText("ACCELEROMETER\n"+
+                ((TextView) findViewById(R.id.dataView)).setText("ACCELEROMETER\n" +
                         "X:" + String.valueOf(x) + "\n" +
                         "Y:" + String.valueOf(y) + "\n" +
                         "Z:" + String.valueOf(z));
@@ -58,22 +42,7 @@ public class MainActivity extends Activity {
             public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
             }
-        },s,SensorManager.SENSOR_DELAY_NORMAL);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        }, s, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override

@@ -7,9 +7,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements SensorEventListener{ //Our class subclasses the Activity class, but also implements the abstract Interface SensorEventListener
@@ -34,6 +31,7 @@ public class MainActivity extends Activity implements SensorEventListener{ //Our
         /**
          * The sensor is telling us the accuracy of the sensor has changed. This is usually HIGH MEDIUM or LOW. For example the location sensor might start off giving low accuracy data, but the longer it is enabled, the higher the accuracy reported.
          */
+
     }
 
     public void onSensorChanged(SensorEvent event) {

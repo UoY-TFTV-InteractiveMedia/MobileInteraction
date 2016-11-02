@@ -5,13 +5,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <TextView android:text="Sensor Data will appear here" android:layout_width="wrap_content"
+    <TextView android:text="Waiting for update" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:textSize="32sp"
         android:layout_centerHorizontal="true"
-        android:id="@+id/dataView" />
-
-
+        android:textSize="32sp"
+        android:id="@+id/updateTextView" />
 
 </RelativeLayout>
