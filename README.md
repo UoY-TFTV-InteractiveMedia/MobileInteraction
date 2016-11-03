@@ -13,7 +13,7 @@ All code is provided "as is", for illustrative purposes, with no guarantees or l
 * Practical2 - Working with Intents and Activities
 * Practical3 - Using Assets, Application Scope and System Intents
 * Practical4 - Interfacing with a remote API (Cat Facts)
-* SensorDemos - Examples of sensor access used in the lecture in Week 6
+* SensorExamples - Examples of sensor access used in the lecture in Week 6
  * Accelerometer
  * Light
  * Position
