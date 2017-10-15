@@ -37,11 +37,6 @@ public class MainActivity extends Activity {
         startActivity(i);
     }
 
-    public void phoneTaxi(View v) {
-        Intent call = new Intent(Intent.ACTION_CALL);
-        call.setData(Uri.parse("tel:01904656565"));
-        startActivity(call);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
