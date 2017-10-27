@@ -1,5 +1,6 @@
 package uk.ac.york.tftv.im.mi.position;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
@@ -48,7 +49,7 @@ public class MainActivity extends Activity {
         }
         catch (SecurityException e) {
             //user rejected request for permission
-            ((TextView) findViewById(R.id.updateTextView)).setText("Error - GPS not enabled");
+            ((TextView) findViewById(R.id.updateTextView)).setText(e.getLocalizedMessage());
         }
     }
 
