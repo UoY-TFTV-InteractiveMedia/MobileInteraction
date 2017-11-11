@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
         l_mgr = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
         try {
-            l_mgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
+            l_mgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
                     ((TextView) findViewById(R.id.updateTextView)).setText(
