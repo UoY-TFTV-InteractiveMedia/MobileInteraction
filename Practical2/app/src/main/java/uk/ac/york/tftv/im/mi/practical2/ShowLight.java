@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.TextView;
 
 public class ShowLight extends AppCompatActivity implements SensorEventListener {
-
     private Sensor light;
     private SensorManager sensor_mgr;
 
