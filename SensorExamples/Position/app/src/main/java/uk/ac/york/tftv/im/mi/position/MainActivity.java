@@ -17,7 +17,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        l_mgr = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+                l_mgr = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
         try {
             l_mgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, new LocationListener() {
