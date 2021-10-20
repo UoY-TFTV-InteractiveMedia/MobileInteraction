@@ -25,6 +25,15 @@ public class CatShow extends AppCompatActivity {
     }
 
     /**
+     * This method changes the textview to show the cat fact passed as a parameter.
+     * @param cat_fact This variable contains the String of the fact, to be shown in the textview
+     */
+    public void setFact(String cat_fact) {
+        TextView tv = (TextView) findViewById(R.id.catFact);
+        tv.setText(cat_fact);
+    }
+
+    /**
      * This is the method attached to the button onClick property
      */
     public void getFact(View v) {
@@ -67,28 +76,20 @@ public class CatShow extends AppCompatActivity {
      * @param rawJSON A string containing JSON encoded daa
      */
     void readJSONFact(String rawJSON) {
-        try {
-            JSONObject json = new JSONObject(rawJSON); //Convert the string into a JSONObject
-            String fact = json.getString("fact"); //Extract the fact from the property "fact", and put it in a string
-            setFact(fact); //call the method that will set the text on screen to show the fact
-        }
-        catch (JSONException e) { //Handle any issues where the JSON is badly formed or invalid
-            setFact("Invalid JSON text");
-        }
-    }
-
-    /**
-     * This is the method called when it has finished.
-     * @param cat_fact This variable contains the String of the fact, to be shown in the textview
-     */
-    public void setFact(String cat_fact) {
         runOnUiThread(new Runnable() { //This section has to happen on the same thread as the user interface.
             @Override
             public void run() {
-                TextView tv = (TextView) findViewById(R.id.catFact);
-                tv.setText(cat_fact);
+                try {
+                    JSONObject json = new JSONObject(rawJSON); //Convert the string into a JSONObject
+                    String fact = json.getString("fact"); //Extract the fact from the property "fact", and put it in a string
+                    setFact(fact); //call the method that will set the text on screen to show the fact
+                }
+                catch (JSONException e) { //Handle any issues where the JSON is badly formed or invalid
+                    setFact("Invalid JSON text");
+                }
             }
         });
-
     }
+
+
 }
