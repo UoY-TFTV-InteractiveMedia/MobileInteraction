@@ -1,14 +1,12 @@
 package uk.ac.york.tftv.im.mi.practical7;
 
 import android.content.SharedPreferences;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,9 +28,7 @@ public class MainActivity extends AppCompatActivity {
             //put the contents of the edittext in a record called "name".
             editor.putString("name", data);
             editor.commit();
-
-            Toast toast = Toast.makeText(getApplicationContext(), "Saved OK!", Toast.LENGTH_SHORT);
-            toast.show();
+            Snackbar.make(findViewById(R.id.savebutton), "This is a snackbar message!", Snackbar.LENGTH_SHORT).show();
         }
 
         if (v.getId() == R.id.loadbutton) {

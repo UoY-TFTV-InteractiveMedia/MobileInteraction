@@ -39,31 +39,29 @@ public class MainActivity extends AppCompatActivity {
     void startSensor(){
         try {
 
-            l_mgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
-                @Override
-                public void onLocationChanged(Location location) {
-                    ((TextView) findViewById(R.id.dataView)).setText(
-                            "POSITION:\n" +
-                                    "LAT: " + String.valueOf(location.getLatitude()) + "\n" +
-                                    "LNG: " + String.valueOf(location.getLongitude()) + "\n" +
-                                    "ACC: " + String.valueOf(location.getAccuracy()) + "m\n"
-                    );
-                }
+            l_mgr.requestLocationUpdates(
+                LocationManager.NETWORK_PROVIDER,
+                0,
+                0,
+                new LocationListener() {
+                    @Override
+                    public void onLocationChanged(Location location) {
+                        ((TextView) findViewById(R.id.dataView)).setText(
+                                "POSITION:\n" +
+                                        "LAT: " + String.valueOf(location.getLatitude()) + "\n" +
+                                        "LNG: " + String.valueOf(location.getLongitude()) + "\n" +
+                                        "ACC: " + String.valueOf(location.getAccuracy()) + "m\n"
+                        );
+                    }
 
-                @Override
-                public void onStatusChanged(String provider, int status, Bundle extras) {
+                    @Override
+                    public void onStatusChanged(String provider, int status, Bundle extras) {}
 
-                }
+                    @Override
+                    public void onProviderEnabled(String provider) {}
 
-                @Override
-                public void onProviderEnabled(String provider) {
-
-                }
-
-                @Override
-                public void onProviderDisabled(String provider) {
-
-                }
+                    @Override
+                    public void onProviderDisabled(String provider) {}
             });
         } catch (SecurityException e) {
             //user rejected request for permission
